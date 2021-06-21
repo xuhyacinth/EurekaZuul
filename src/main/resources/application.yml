@@ -1,0 +1,48 @@
+# 服务端口
+server:
+  port: 9600
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
+spring:
+  application:
+    # 服务名字
+    name: EurekeZuul
+  # zipkin 服务地址
+  zipkin:
+    base-url: http://192.168.0.6:9411
+  # zipkin 采样率
+  sleuth:
+    sampler: 0.1
+
+#
+## 配置路由规则
+#zuul:
+#  routes:
+#    client-service:
+#      path: /client/**
+#      url: http://192.168.0.6:9000
+#    customer-service:
+#      path: /customer/**
+#      url: http://192.168.0.6:9100
+#  prefix: /zuul # 给路由加一个统一的前缀
+#  servlet-path: /
+#  host:
+#    connect-timeout-millis: 60000
+#    socket-timeout-millis: 60000
+#  ribbon:
+#    eager-load:
+#      enabled: true #启动饥饿加载
+
+logging:
+  level:
+    com.netflix: debug
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000
